@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:state_management_examples/functions/Local_Storage.dart';
 import 'package:state_management_examples/models/task_data.dart';
 import './screens/tasks_screen.dart';
 import 'package:provider/provider.dart';
@@ -21,12 +22,8 @@ class doNotDisturb extends StatefulWidget {
   State<doNotDisturb> createState() => _doNotDisturbState(prefs: prefs);
 }
 
-void savedData() async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setStringList('tasks', taskNames);
-  await prefs.setStringList('toggles', toggles);
-  taskNames = await prefs.getStringList('tasks');
-  toggles = await prefs.getStringList('toggles');
+void savedData() async{
+  TaskData taskData =await TaskData();
 }
 
 class _doNotDisturbState extends State<doNotDisturb> {

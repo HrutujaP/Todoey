@@ -94,18 +94,23 @@ class _Tasks_TileState extends State<Tasks_Tile> {
                 );
               });
         },
-        child: Icon(
-          Icons.edit,
-          size: 20,
-          color: Colors.purple,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 7.0),
+          child: Icon(
+            Icons.edit,
+            size: 22,
+            color: Colors.purple,
+          ),
         ),
       ),
       onLongPress: widget.longPressCallback,
       title: Text(
         widget.taskTitle,
         style: TextStyle(
-            decoration: widget.isChecked ? TextDecoration.lineThrough : null,
-            fontSize: 18),
+          decoration: widget.isChecked ? TextDecoration.lineThrough : null,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       onTap: widget.onTapCallback,
       trailing: Checkbox(

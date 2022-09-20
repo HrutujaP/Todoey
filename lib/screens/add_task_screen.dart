@@ -32,7 +32,6 @@ class _addTaskScreenState extends State<addTaskScreen> {
             ),
             TextField(
               onChanged: (newText) {
-                print(newTaskTitle);
                 setState(() {
                   newTaskTitle = newText;
                 });
