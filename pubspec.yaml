@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^2.0.13
   emojis: ^0.9.9
   flutter_launcher_icons: ^0.9.3
+  avatar_glow: ^2.0.2
 
 dev_dependencies:
   flutter_test:

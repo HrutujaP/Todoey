@@ -1,4 +1,6 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:state_management_examples/screens/hint_screen.dart';
 import '../widgets/Tasks_List.dart';
 import '../screens/add_task_screen.dart';
 import 'package:provider/provider.dart';
@@ -9,33 +11,48 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade100,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.purple,
-        child: Icon(Icons.add),
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => addTaskScreen(),
-          );
-          
-        },
+      floatingActionButton: AvatarGlow(
+        glowColor: Colors.black,
+        endRadius: 35,
+        child: FloatingActionButton(
+          backgroundColor: Colors.purple,
+          child: Icon(Icons.add),
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => addTaskScreen(),
+            );
+          },
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 30),
+            padding: EdgeInsets.only(top: 50, left: 25, right: 25, bottom: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                CircleAvatar(
-                  child: Icon(
-                    Icons.list,
-                    size: 30,
-                    color: Colors.purple,
+                AvatarGlow(
+                  glowColor: Colors.purple,
+                  endRadius: 40,
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => Hint(),
+                      );
+                    },
+                    child: CircleAvatar(
+                      child: Icon(
+                        Icons.list,
+                        size: 30,
+                        color: Colors.purple,
+                      ),
+                      backgroundColor: Colors.pink.shade50,
+                      radius: 30,
+                    ),
                   ),
-                  backgroundColor: Colors.pink.shade50,
-                  radius: 30,
                 ),
                 SizedBox(
                   height: 10,
