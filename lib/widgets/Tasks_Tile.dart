@@ -43,6 +43,8 @@ class _Tasks_TileState extends State<Tasks_Tile> {
                     child: Column(
                       children: [
                         TextField(
+                          controller:
+                              TextEditingController(text: widget.taskTitle),
                           onChanged: (newText) {
                             // print(newTaskTitle);
                             setState(() {
