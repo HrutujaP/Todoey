@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../models/task_data.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:collection';
 
 class Tasks_Tile extends StatefulWidget {
   bool isChecked = false;
@@ -18,6 +21,10 @@ class Tasks_Tile extends StatefulWidget {
 }
 
 class _Tasks_TileState extends State<Tasks_Tile> {
+  int idx;
+  String newTaskTitle = "";
+  TaskData taskdata = TaskData();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -43,14 +50,15 @@ class _Tasks_TileState extends State<Tasks_Tile> {
                     child: Column(
                       children: [
                         TextField(
-                          controller:
-                              TextEditingController(text: widget.taskTitle),
+                          controller: TextEditingController(
+                              text: widget.taskTitle.replaceAll("⭐", "")),
                           onChanged: (newText) {
                             // print(newTaskTitle);
                             setState(() {
                               if (newText != null) {
-                                widget.taskTitle = newText;
+                                newTaskTitle = newText;
                               }
+
                               // newTaskTitle = newText;
                             });
                           },
@@ -83,6 +91,15 @@ class _Tasks_TileState extends State<Tasks_Tile> {
                           ),
                           onPressed: () {
                             Navigator.pop(context);
+                            setState(() {
+                              idx =
+                                  taskdata.taskNames.indexOf(widget.taskTitle);
+                              print(idx);
+                              widget.taskTitle = newTaskTitle;
+                              print(widget.taskTitle);
+
+                              taskdata.editTask(idx, newTaskTitle);
+                            });
                           },
                           child: Text(
                             'Edit',
