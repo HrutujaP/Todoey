@@ -7,7 +7,6 @@ class TaskData extends ChangeNotifier {
   TaskData() {
     getTasks();
   }
-
   List<String> taskNames = [];
   List<String> toggles = [];
   Local_Storage local_storage = Local_Storage();

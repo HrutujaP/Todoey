@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../models/task_data.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:collection';
 
 class Tasks_Tile extends StatefulWidget {
   bool isChecked = false;
@@ -20,6 +23,10 @@ class Tasks_Tile extends StatefulWidget {
 }
 
 class _Tasks_TileState extends State<Tasks_Tile> {
+  int idx;
+  String newTaskTitle = "";
+  TaskData taskdata = TaskData();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
