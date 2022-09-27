@@ -4,7 +4,6 @@ import '../models/task.dart';
 import "../functions/Local_Storage.dart";
 
 class TaskData extends ChangeNotifier {
-
   TaskData() {
     getTasks();
   }
@@ -54,6 +53,18 @@ class TaskData extends ChangeNotifier {
     task.toggleDone();
     int idx = taskNames.indexOf(task.name);
     toggles[idx] = toggles[idx] == "true" ? "false" : "true";
+    print(taskNames);
+    print(toggles);
+    result = await local_storage.updateLocalStorage(taskNames, toggles);
+    taskNames = result[0];
+    toggles = result[1];
+    notifyListeners();
+  }
+
+  void editTask(Task task, String edittedTask) async {
+    int idx = taskNames.indexOf(task.name);
+    taskNames[idx] = edittedTask;
+    print(idx);
     print(taskNames);
     print(toggles);
     result = await local_storage.updateLocalStorage(taskNames, toggles);

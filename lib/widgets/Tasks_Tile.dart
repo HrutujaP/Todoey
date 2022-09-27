@@ -6,12 +6,14 @@ class Tasks_Tile extends StatefulWidget {
   final Function longPressCallback;
   final Function checkBoxCallback;
   final Function onTapCallback;
+  final Function onEditCallback;
   Tasks_Tile(
       {this.isChecked,
       this.taskTitle,
       this.checkBoxCallback,
       this.longPressCallback,
-      this.onTapCallback});
+      this.onTapCallback,
+      this.onEditCallback});
 
   @override
   State<Tasks_Tile> createState() => _Tasks_TileState();
@@ -22,80 +24,7 @@ class _Tasks_TileState extends State<Tasks_Tile> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: GestureDetector(
-        onTap: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  backgroundColor: Colors.pink.shade50,
-                  title: Center(
-                    child: Text(
-                      "Edit Task",
-                      style: TextStyle(
-                          color: Colors.purple,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  content: Container(
-                    height: 120,
-                    width: 40,
-                    child: Column(
-                      children: [
-                        TextField(
-                          controller:
-                              TextEditingController(text: widget.taskTitle),
-                          onChanged: (newText) {
-                            // print(newTaskTitle);
-                            setState(() {
-                              if (newText != null) {
-                                widget.taskTitle = newText;
-                              }
-                              // newTaskTitle = newText;
-                            });
-                          },
-                          autofocus: true,
-                          cursorColor: Colors.deepPurple,
-                          decoration: InputDecoration(
-                            hintText: widget.taskTitle,
-                            hintStyle: TextStyle(color: Colors.purple),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.purple),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.deepPurple),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.purple.shade100),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            'Edit',
-                            style:
-                                TextStyle(color: Colors.purple, fontSize: 20),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              });
-        },
+        onTap: widget.onEditCallback,
         child: Padding(
           padding: const EdgeInsets.only(top: 7.0),
           child: Icon(

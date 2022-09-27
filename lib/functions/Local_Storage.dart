@@ -20,7 +20,7 @@ class Local_Storage {
 
     print("tasks :" + taskNames.toString());
     print("toggles :" + toggles.toString());
-
+    // prefs.clear();
     if (taskNames == null || toggles == null) {
       prefs.clear();
       taskNames = [];

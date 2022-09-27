@@ -9,7 +9,7 @@ class Hint extends StatelessWidget {
       color: Color.fromARGB(255, 114, 114, 114),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.pink.shade100,
+          color: Colors.purple.shade100,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -19,7 +19,7 @@ class Hint extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
                 child: Text(
@@ -34,26 +34,41 @@ class Hint extends StatelessWidget {
                 height: 20,
               ),
               HintTiles(
-                leadingText: "1.",
-                title: "Add a task by clicking the  ➕ button.",
+                icon: Icons.add_circle_rounded,
+                hint: "- To Edit a task.",
               ),
               HintTiles(
-                leadingText: "2.",
-                title: "Hold on a specific task to delete it.",
+                icon: Icons.edit,
+                hint: "- To Add a new task.",
               ),
               HintTiles(
-                leadingText: "3.",
-                title:
-                    "Tap on the checkbox beside a particular task to mark  it as done.",
+                icon: null,
+                hint: "Tap on a task to mark it as important.",
               ),
               HintTiles(
-                  leadingText: "4.",
-                  title:
-                      "Tap on a specifc task to mark it as important (Add's a ⭐ to the task). "),
+                icon: null,
+                hint: "Click on the checkbox to mark the task as completed.",
+              ),
               HintTiles(
-                leadingText: "5.",
-                title: "Tap on the edit button to edit a task.",
-              )
+                icon: null,
+                hint: "Tap and hold on a task to delete it.",
+              ),
+              // HintTiles(
+              //   leadingText: "2.",
+              //   title: "Tap and hold on a task to delete it.",
+              // ),
+              // HintTiles(
+              //   leadingText: "3.",
+              //   title:
+              //       "Tap on the checkbox beside a particular task to mark  it as done.",
+              // ),
+              // HintTiles(
+              //     leadingText: "4.",
+              //     title: "Tap on a task to mark it important. "),
+              // HintTiles(
+              //   leadingText: "5.",
+              //   title: "Click on the 🖊️ to edit a particular task.",
+              // )
             ],
           ),
         ),
@@ -63,25 +78,43 @@ class Hint extends StatelessWidget {
 }
 
 class HintTiles extends StatelessWidget {
-  String leadingText, title;
-
-  HintTiles({this.leadingText, this.title});
+  String hint, leading;
+  IconData icon;
+  HintTiles({this.hint, this.icon, this.leading});
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(leadingText,
-          style: TextStyle(
-              wordSpacing: 0.01,
-              letterSpacing: 0.01,
-              fontSize: 22,
-              fontWeight: FontWeight.w500)),
-      subtitle: Text(title,
-          style: TextStyle(
-              wordSpacing: 0.01,
-              letterSpacing: 0.01,
-              fontSize: 18,
-              fontWeight: FontWeight.w500)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          icon != null
+              ? Icon(
+                  icon,
+                  color: Colors.purple,
+                )
+              : Text(
+                  leading,
+                  style: TextStyle(
+                    color: Colors.grey.shade400,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18
+                  ),
+                ),
+          icon != null
+              ? SizedBox(
+                  width: 10,
+                )
+              : Center(),
+          Text(
+            hint,
+            style: TextStyle(
+                color: Colors.grey.shade800,
+                fontWeight: FontWeight.w600,
+                fontSize: 16),
+          ),
+        ],
+      ),
     );
   }
 }
